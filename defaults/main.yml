@@ -1,0 +1,5 @@
+---
+
+config_dir: /etc/apt/apt.conf.d/
+config_file: 99proxy
+#proxy_url: http://cfg.crptech.local:8888
