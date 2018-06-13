@@ -7,3 +7,24 @@
     owner: root
     group: root
     mode: 0644
+
+- name: configure proxy variables
+  lineinfile:
+    path: /etc/environment
+    create: yes
+    regexp: "^{{item.key}}=.*$"
+    line: "{{item.key}}={{item.value}}"
+    state: present
+  with_items:
+    - { key: "http_proxy", value: "{{proxy_url}}" }
+    - { key: "https_proxy", value: "{{proxy_url}}" }
+
+- name: configure no_proxy
+  lineinfile:
+    path: /etc/environment
+    create: yes
+    regexp: "^no_proxy=.*$"
+    line: "no_proxy={{no_proxy}}"
+    state: present
+  when: no_proxy is defined
+
