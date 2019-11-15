@@ -1,32 +1,68 @@
 ---
 
-- name: configure apt proxy in {{config_dir}}/{{config_file}}
+- name: configure apt proxy in {{ config_dir }}{{ config_file }}
   template:
     src: apt-proxy-config
-    dest: "{{config_dir}}/{{config_file}}"
+    dest: "{{ config_dir }}{{ config_file }}"
     owner: root
     group: root
     mode: 0644
+  when: (http_proxy is defined) or (https_proxy is defined)
 
-- name: configure proxy variables
+- name: configure http proxy variables
   lineinfile:
     path: /etc/environment
     create: yes
-    regexp: "^{{item}}=.*$"
-    line: "{{item}}={{proxy_url}}"
+    regexp: "^{{ item }}=.*$"
+    line: "{{ item }}={{ http_proxy }}"
     state: present
   with_items:
     - http_proxy
-    - https_proxy
     - HTTP_PROXY
+  when: http_proxy is defined
+
+- name: configure https proxy variables
+  lineinfile:
+    path: /etc/environment
+    create: yes
+    regexp: "^{{ item }}=.*$"
+    line: "{{ item }}={{ https_proxy }}"
+    state: present
+  with_items:
+    - https_proxy
     - HTTPS_PROXY
+  when: https_proxy is defined
+
+- name: configure ftp proxy variables
+  lineinfile:
+    path: /etc/environment
+    create: yes
+    regexp: "^{{ item }}=.*$"
+    line: "{{ item }}={{ ftp_proxy }}"
+    state: present
+  with_items:
+    - ftp_proxy
+    - FTP_PROXY
+  when: ftp_proxy is defined
+
+- name: configure socks host variables
+  lineinfile:
+    path: /etc/environment
+    create: yes
+    regexp: "^{{ item }}=.*$"
+    line: "{{ item }}=socks://{{ socks_host }}"
+    state: present
+  with_items:
+    - all_proxy
+    - ALL_PROXY
+  when: socks_host is defined
 
 - name: configure no_proxy
   lineinfile:
     path: /etc/environment
     create: yes
-    regexp: "^{{item}}=.*$"
-    line: "{{item}}={{no_proxy}}"
+    regexp: "^{{ item }}=.*$"
+    line: "{{ item }}={{ no_proxy }}"
     state: present
   with_items:
     - no_proxy
