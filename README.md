@@ -21,7 +21,7 @@ Example Playbook
     - role: apt-proxy
       http_proxy: http://proxy.server.local:8888
       https_proxy: http://proxy.server.local:8888
-      no_proxy: http://proxy.server.local:8888
+      no_proxy: 127.0.0.0,127.0.0.1,localhost
 
 or
 
@@ -30,7 +30,7 @@ or
       https_proxy: http://proxy.server.local:8888
       ftp_proxy: http://proxy.server.local:8888
       socks_host: http://proxy.server.local:8888
-      no_proxy: http://proxy.server.local:8888
+      no_proxy: 127.0.0.0,127.0.0.1,localhost
 
 License
 -------
