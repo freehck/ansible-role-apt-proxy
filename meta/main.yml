@@ -1,6 +1,6 @@
 galaxy_info:
   author: freehck
-  description: setup proxy for apt
+  description: setup proxy for both apt and host
   license: MIT
 
   min_ansible_version: 2.5

@@ -2,5 +2,8 @@
 
 config_dir: /etc/apt/apt.conf.d/
 config_file: 99proxy
-#proxy_url: http://cfg.crptech.local:8888
+#http_proxy: http://cfg.crptech.local:8888
+#https_proxy: http://cfg.crptech.local:8888
+#ftp_proxy: http://cfg.crptech.local:8888
+#socks_host: http://cfg.crptech.local:8888
 #no_proxy: "crptech.local"
