@@ -23,6 +23,7 @@ Example Playbook
       https_proxy: http://proxy.server.local:8888
       no_proxy: http://proxy.server.local:8888
 
+or
 
     - role: apt-proxy
       http_proxy: http://proxy.server.local:8888
