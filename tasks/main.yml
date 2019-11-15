@@ -1,9 +1,9 @@
 ---
 
-- name: configure apt proxy in {{ config_dir }}/{{ config_file }}
+- name: configure apt proxy in {{ config_dir }}{{ config_file }}
   template:
     src: apt-proxy-config
-    dest: "{{ config_dir }}/{{ config_file }}"
+    dest: "{{ config_dir }}{{ config_file }}"
     owner: root
     group: root
     mode: 0644
