@@ -6,8 +6,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: ubuntu_instance
+    image: ubuntu:1804
+  - name: debian_instance
+    image: debian:10
 provisioner:
   name: ansible
   lint:
